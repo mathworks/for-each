@@ -1,7 +1,7 @@
 classdef eachSlice < matlab.unittest.TestCase
-    %   Copyright 2014 The MathWorks, Inc.    
+
     methods (Test)
-        
+
         function numberOfIterations(testcase)
         A = randi(10,4,4,4);
         loopCounter = 0;
@@ -13,3 +13,5 @@ classdef eachSlice < matlab.unittest.TestCase
         end
     end
 end
+
+% Copyright 2014-2023 The MathWorks, Inc.

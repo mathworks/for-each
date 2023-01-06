@@ -9,17 +9,17 @@ classdef TupleIterator < each.iterators.Iterable
 % See Also: each, eachTuple, each.iterators.Iterable
 %
 
-%   Copyright 2014-2015 The MathWorks, Inc.
+% Copyright 2014-2023 The MathWorks, Inc.
     properties (Access = private)
         Iters
     end
-    
+
     properties (GetAccess = public, SetAccess = private)
         TupleSize;
     end
-    
+
     methods
-        
+
         function obj = TupleIterator(varargin)
             %TUPLEITERATIOR create a N-Tuple iterator from a set of arrays
             % TI = TUPLEITERATIOR(A1,...An) creates a tuple iterator which will iterate
@@ -36,21 +36,32 @@ classdef TupleIterator < each.iterators.Iterable
             %   n = TI.NumberOfIterations
             %
             % See Also: each, eachTuple, each.iterators.Iterable
-            obj.TupleSize = nargin;
-            obj.Iters = cellfun(@each.iterators.getIterator,varargin,'UniformOutput',false);
-            siz = cellfun(@(c)c.NumberOfIterations,obj.Iters);
-            
+            N = nargin;
+            obj.TupleSize = N;
+            itrs = cell(1,N);
+            siz = zeros(1,N);
+            for ii = 1:N
+                itr = each.iterators.getIterator(varargin{ii});
+                itrs{ii} = itr;
+                siz(ii) = itr.NumberOfIterations;
+            end
+            obj.Iters = itrs;
+
             if any(siz ~= siz(1))
                throwAsCaller(MException('iterators:Tuple:MismatchSize',...
                     'All arrays in the tuple must produce the same number of iterations.'));
             end
             obj.NumberOfIterations = siz(1);
         end
-        
+
         function elem = getValue(obj,k)
-            elem = cellfun(@(c)getValue(c,k),obj.Iters,'UniformOutput',false);
+            N = numel(obj.Iters);
+            elem = cell(1,N);
+            for ii = 1:N
+                elem{ii} = obj.Iters{ii}.getValue(k);
+            end
         end
-        
+
     end
-    
+
 end

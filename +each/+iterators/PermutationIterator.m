@@ -5,26 +5,26 @@ classdef PermutationIterator < each.iterators.Iterable
 % See Also: each, eachPermutation, each.iterators.Iterable
 %
 
-%   Copyright 2014-2015 The MathWorks, Inc.
-    
+% Copyright 2014-2015 The MathWorks, Inc.
+
     properties (GetAccess = public, SetAccess = protected)
-        Ids  
+        Ids
         FirstVector
     end
-    
+
     properties (Access = private)
         lastPerm
         lastK
     end
-    
+
     methods (Access = protected)
-        
+
         function perm = GetKthPerm(obj,k)
             if k > obj.NumberOfIterations
                 perm = [];
                 return
             end
-            
+
             if isempty(obj.lastPerm) || k == 1
                 obj.lastPerm = obj.Ids;
                 obj.lastK = 1;
@@ -51,7 +51,7 @@ classdef PermutationIterator < each.iterators.Iterable
             end
             perm = obj.lastPerm;
         end
-        
+
     end
-    
+
 end

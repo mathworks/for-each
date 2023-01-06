@@ -1,7 +1,7 @@
 function idx = getNextPerm(idx)
-% GETNEXTPERM Find the next unique permutation of an index vector    
+% GETNEXTPERM Find the next unique permutation of an index vector
 %
-%   Copyright 2014 The MathWorks, Inc.
+% Copyright 2014 The MathWorks, Inc.
 
 % Find the first element in the vector with a value less than the value to
 % its right. Call that the pivot element
@@ -21,5 +21,5 @@ idx(pivotID) = ceilElem;
 
 % sort the remaining tail.
 idx(pivotID+1:end) = sort(idx(pivotID+1:end));
-    
+
 end

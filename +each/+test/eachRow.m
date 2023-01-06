@@ -1,7 +1,7 @@
 classdef eachRow < matlab.unittest.TestCase
-    %   Copyright 2014 The MathWorks, Inc.    
+
     methods (Test)
-        
+
         function numberOfIterations(testcase)
         A = magic(6);
         loopCounter = 0;
@@ -13,3 +13,4 @@ classdef eachRow < matlab.unittest.TestCase
         end
     end
 end
+% Copyright 2014-2023 The MathWorks, Inc.

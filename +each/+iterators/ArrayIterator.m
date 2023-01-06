@@ -32,28 +32,28 @@ classdef ArrayIterator < each.iterators.Iterable
 %     end
 %
 % ArrayIterator Methods:
-%   each.iterators.ArrayIterator/ArrayIterator - Constructor for an array 
+%   each.iterators.ArrayIterator/ArrayIterator - Constructor for an array
 %                                                iterator
-%   each.iterators.ArrayIterator/GETVALUE      - Get the Kth value of an 
+%   each.iterators.ArrayIterator/GETVALUE      - Get the Kth value of an
 %                                                iterator object.
 %
 % ArrayIterator Properties:
-%   each.iterators.ArrayIterator.NumberOfIterations - The number of 
+%   each.iterators.ArrayIterator.NumberOfIterations - The number of
 %                                                     iterations.
 %
 % Note: This iterator only works with objects which can be indexed into
 %       by linear indexing.
 %
-% See Also: each, eachTuple, each.iterators.Iterable, 
+% See Also: each, eachTuple, each.iterators.Iterable,
 %   each.iterators.TupleIterator
 %
 
-%   Copyright 2014 The MathWorks, Inc.
-    
+% Copyright 2014 The MathWorks, Inc.
+
     properties (Access = private)
         Array;
     end
-    
+
     methods
         function obj = ArrayIterator(A)
             %ARRAYITERATOR Constructor for an array iterator
@@ -68,7 +68,7 @@ classdef ArrayIterator < each.iterators.Iterable
             obj.Array = A;
             obj.NumberOfIterations = numel(A);
         end
-        
+
         function elem = getValue(obj,k)
             %GETVALUE  Get the Kth value of an iterator object.
             % ELEM = getValue(OBJ,K) returns the kth element of the array used to
@@ -76,7 +76,7 @@ classdef ArrayIterator < each.iterators.Iterable
             %
             elem = obj.Array(k);
         end
-        
+
     end
-    
+
 end

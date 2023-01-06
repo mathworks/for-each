@@ -1,13 +1,8 @@
-% Copyright 2014 The MathWorks, Inc.
+function out = all()
 % Runs all the tests in the each.test package
 
-if ~exist('matlab.unittest.TestCase','class')
-    error('Each:EarlierVersion','This test file requires the unit testing framework.')
-end
+    import matlab.unittest.TestSuite
+    suite = TestSuite.fromPackage("each.test");
+    out = suite.run();
 
-me = meta.package.fromName('each.test');
-tests = { me.ClassList.Name };
-
-for test = each(tests)
-    run( feval( test ) );
-end
+% Copyright 2014-2023 The MathWorks, Inc.

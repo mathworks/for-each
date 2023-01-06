@@ -11,8 +11,8 @@ classdef UniquePermutationIterator < each.iterators.PermutationIterator
 % See Also: each, eachPermutation, each.iterators.Iterable
 %
 
-%   Copyright 2014 The MathWorks, Inc.
-    
+% Copyright 2014 The MathWorks, Inc.
+
     properties (Access = private)
         UniqueVals
     end
@@ -30,19 +30,19 @@ classdef UniquePermutationIterator < each.iterators.PermutationIterator
                 obj.Ids = double.empty(size(vect));
                 return
             end
-            
+
             if ~isvector(vect)
                 error('iterators:eachPermutation:notavector',...
                     'Expected the input to be a vector.')
             end
-            
+
             obj.FirstVector = sort(vect);
-            
+
             [obj.UniqueVals,~,obj.Ids] = unique(obj.FirstVector);
             obj.NumberOfIterations = getNumPerms(obj.Ids);
-            
+
         end
-        
+
         function elem = getValue(obj,k)
             %GETVALUE  Get the Kth value of an iterator object.
             % PERM = getValue(OBJ,K) returns the kth permutation of the vector used to
@@ -50,23 +50,23 @@ classdef UniquePermutationIterator < each.iterators.PermutationIterator
             %
             elem = obj.UniqueVals(obj.GetKthPerm(k));
         end
-        
+
     end
 end
 
 function num = getNumPerms(ids)
     % save the length of the ids
     n = numel(ids);
-    
+
     % count the duplicates, and remove counts which occur once.
     dupeCounts = histc(ids,1:max(ids));
     dupeCounts = dupeCounts(:)';
     dupeCounts(dupeCounts==1) = [];
-    
+
     % The formula for the number of unique permutations of a vector is as
     % follows:
     %
-    %   N = n! / prod(r_i!), i = 1 to number of unique elements of ids, 
+    %   N = n! / prod(r_i!), i = 1 to number of unique elements of ids,
     %
     % where r_i is the number of instances of the ith unique element.
     % This calculation is guaranteed to be an integer.
@@ -78,7 +78,7 @@ function num = getNumPerms(ids)
         num = factorial(n)/prod(factorial(dupeCounts));
         return
     end
-    
+
     % for n > 18, the numerator of the calculation can exceed 2^52-1
     % To correctly perform the division, the avoid doing the multiplication
     % until all the dividing factors have been canceled out.
@@ -116,4 +116,3 @@ function num = getNumPerms(ids)
     num = prod(cumFactorial);
 
 end
-
