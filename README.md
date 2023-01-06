@@ -5,16 +5,18 @@ MATLAB &reg;.
 
 ---------------------------------------
 To install:
-Download zip and extract to a folder.
-Then add the following to startup.m:
-`addpath {installdir}/foreach`
+* Download zip and extract to a folder.
+* Then add the following to startup.m:
+* `addpath {installdir}/foreach`
 
 Or install from File Exchange:
 [![For-Each on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/48729-for-each)
 ---------------------------------------
 To learn about for-each, type:
+
 `>> help foreach`
 
 ---------------------------------------
 To Run Tests
+
 `>> each.test.all`
