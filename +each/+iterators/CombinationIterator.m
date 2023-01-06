@@ -9,7 +9,7 @@ classdef CombinationIterator < each.iterators.Iterable
 % See Also: each, eachCombination, each.iterators.Iterable
 %
 
-%   Copyright 2014-2023 The MathWorks, Inc.
+% Copyright 2014-2023 The MathWorks, Inc.
 
     properties (GetAccess = public, SetAccess = private)
         NumberOfInputs;

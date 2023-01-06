@@ -1,7 +1,7 @@
 classdef eachColumn < matlab.unittest.TestCase
-    
+
     methods (Test)
-        
+
         function numberOfIterations(testcase)
         A = magic(6);
         loopCounter = 0;
@@ -13,3 +13,5 @@ classdef eachColumn < matlab.unittest.TestCase
         end
     end
 end
+
+% Copyright 2014-2023 The MathWorks, Inc.

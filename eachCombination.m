@@ -1,10 +1,10 @@
 function out = eachCombination(varargin)
 % EACHCOMBINATION Loop over each combination of N elements in N arrays.
-% Use EACHCOMBINATION to iterate over every combination of elements from 
-% the arrays A1 through AN. 
-% 
-% The input arrays to EACHCOMBINATION (A1, A2, ..., AN) must all work with 
-% the each function. They do not have to be the same data type, nor have 
+% Use EACHCOMBINATION to iterate over every combination of elements from
+% the arrays A1 through AN.
+%
+% The input arrays to EACHCOMBINATION (A1, A2, ..., AN) must all work with
+% the each function. They do not have to be the same data type, nor have
 % the same number of elements.
 %
 %     for elem = EACHCOMBINATION(A1,A2,...,AN)
@@ -15,7 +15,7 @@ function out = eachCombination(varargin)
 %         ... % Loop Body
 %     end
 %
-% In each loop iteration, elem is a cell array containing the next 
+% In each loop iteration, elem is a cell array containing the next
 % combination of elements in the same order as the nested loop below.
 %
 %     for k1 = 1:numel(A1)
@@ -32,7 +32,7 @@ function out = eachCombination(varargin)
 %         end
 %     end
 %
-% The total number of iterations is the product of the number of elements 
+% The total number of iterations is the product of the number of elements
 % in each array.
 %
 % Example, use EACHCOMBINATION instead of a nested loop:
@@ -53,9 +53,9 @@ function out = eachCombination(varargin)
 %         [i,j,k] = idxs{:};
 %         A(i,j,k) = sqrt(sum(randn(3,1).^2));
 %     end
-% 
-% EACHCOMBINATION also accepts inputs which are the results of another 
-% each* function. 
+%
+% EACHCOMBINATION also accepts inputs which are the results of another
+% each* function.
 %
 % Example, using the results of each* functions in EACHCOMBINATION.
 %
@@ -63,13 +63,13 @@ function out = eachCombination(varargin)
 %     for elem = eachCombination(eachRow(A),eachColumn(B))
 %         [a,b] = elem{:};
 %         % dot product of each combination of each row and column.
-%         C(end+1) = a*b; 
+%         C(end+1) = a*b;
 %     end
 %
 % See also each, eachSlice, cell/each, eachTuple, eachPermutation
-% 
+%
 
-%   Copyright 2014 The MathWorks, Inc.
+% Copyright 2014 The MathWorks, Inc.
 
 out = each.iterators.CombinationIterator(varargin{:});
 end

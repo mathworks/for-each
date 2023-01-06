@@ -1,5 +1,5 @@
 classdef Iterable < matlab.unittest.TestCase
-    %   Copyright 2014-2023 The MathWorks, Inc.
+% Test common Iteration Properties
     methods (Test)
 
         function negativeTest(testcase)
@@ -19,7 +19,9 @@ classdef Iterable < matlab.unittest.TestCase
         end
 
         function unsupportedOperations(testcase)
-            it = each(1:10);
+            import each.test.helpers.NumberOfIterationsHelper;
+
+            it = NumberOfIterationsHelper(10);
             msgId = "Iterable:UnsupportedOperation";
             testcase.verifyError(@()it(:),msgId);
             testcase.verifyError(@()it(3),msgId);
@@ -49,3 +51,5 @@ classdef Iterable < matlab.unittest.TestCase
         end
     end
 end
+
+% Copyright 2014-2023 The MathWorks, Inc.

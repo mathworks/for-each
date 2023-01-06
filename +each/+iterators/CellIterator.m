@@ -9,12 +9,12 @@ classdef CellIterator < each.iterators.Iterable
 %
 % See Also: each, cell/each each.iterators.Iterable
 
-%   Copyright 2014 The MathWorks, Inc.
-    
+% Copyright 2014 The MathWorks, Inc.
+
     properties (Access = private)
         CellArray;
     end
-    
+
     methods
         function obj = CellIterator(C)
             %CELLITERATOR Constructor for a cell array iterator
@@ -25,13 +25,13 @@ classdef CellIterator < each.iterators.Iterable
             obj.CellArray = C;
             obj.NumberOfIterations = numel(C);
         end
-        
+
         function elem = getValue(obj,k)
             %GETVALUE  Get the Kth value of an iterator object.
-            % ELEM = getValue(OBJ,K) returns the contents of the kth cell of the array 
+            % ELEM = getValue(OBJ,K) returns the contents of the kth cell of the array
             %                        used to create the instance of OBJ.
             elem = obj.CellArray{k};
         end
     end
-    
+
 end

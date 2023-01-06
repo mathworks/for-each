@@ -10,17 +10,17 @@ classdef AllPermutationIterator < each.iterators.PermutationIterator
     %
     % See Also: each, eachPermutation, each.iterators.Iterable
     %
-    
-    %   Copyright 2014 The MathWorks, Inc.
-    
+
+    % Copyright 2014 The MathWorks, Inc.
+
     properties (Access = private)
         Multiplicity
         UniqueVals
     end
-    
+
     methods
         function obj = AllPermutationIterator(vect)
-            %ALLPERMUTATIONITERATOR Constructor for a permutation iterator 
+            %ALLPERMUTATIONITERATOR Constructor for a permutation iterator
             % IO = AllPermutationIterator(v) returns an iterator object which can access
             %                                every permutation of the vector v.
             %
@@ -31,19 +31,19 @@ classdef AllPermutationIterator < each.iterators.PermutationIterator
                 obj.Ids = double.empty(size(vect));
                 return
             end
-            
+
             if ~isvector(vect)
                 error('iterators:eachPermutation:notavector',...
                     'Expected the input to be a vector.')
             end
             obj.NumberOfIterations = factorial(length(vect));
-            
+
             [obj.UniqueVals,~,obj.Ids] = unique( sort(vect) );
             obj.FirstVector = obj.UniqueVals(obj.Ids);
             obj.Multiplicity = uint32(prod(histc(obj.Ids,1:max(obj.Ids))));
-            
+
         end
-        
+
         function elem = getValue(obj,k)
             %GETVALUE  Get the Kth value of an iterator object.
             % PERM = getValue(OBJ,K) returns the kth permutation of the vector used to
@@ -52,7 +52,7 @@ classdef AllPermutationIterator < each.iterators.PermutationIterator
             k = 1+idivide(k-1,obj.Multiplicity,'floor');
             elem = obj.UniqueVals(obj.GetKthPerm(k));
         end
-        
+
     end
-    
+
 end

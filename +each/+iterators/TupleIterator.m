@@ -9,7 +9,7 @@ classdef TupleIterator < each.iterators.Iterable
 % See Also: each, eachTuple, each.iterators.Iterable
 %
 
-%   Copyright 2014-2023 The MathWorks, Inc.
+% Copyright 2014-2023 The MathWorks, Inc.
     properties (Access = private)
         Iters
     end

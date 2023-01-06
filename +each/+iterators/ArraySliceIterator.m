@@ -8,19 +8,19 @@ classdef ArraySliceIterator < each.iterators.Iterable
     %
     % See Also: each, eachRow, eachColumn, eachSlice, each.iterators.Iterable
     %
-    
-    %   Copyright 2014 The MathWorks, Inc.
-    
+
+    % Copyright 2014 The MathWorks, Inc.
+
     properties (GetAccess = public, SetAccess = private)
         SliceDimensions
         ElementSize
     end
-    
+
     properties (Access = private)
         dimsItr;
         Array;
     end
-    
+
     methods
         function IO = ArraySliceIterator(A,workdim)
             %ARRAYSLICEITERATOR Constructor for an array iterator
@@ -36,16 +36,16 @@ classdef ArraySliceIterator < each.iterators.Iterable
             % of iterations would be 12.
             %
             % See Also: each, each.iterators.Iterable
-            
+
             n = ndims(A);
             slice = setdiff(1:n,workdim);
             siz = size(A);
-            
+
             % -----------
             % Calculate the element size
             elemSize = siz;
             elemSize(workdim < n) = 1;
-            
+
             % -----------
             % Create indexing iterator
             % eachCombination avoids using num2cell for a memory win.
@@ -54,13 +54,13 @@ classdef ArraySliceIterator < each.iterators.Iterable
             IO.dimsItr = eachCombination(dims{:});
             % -----------
             % get NumberOfIterations from index iterator.
-            
+
             IO.ElementSize = elemSize;
             IO.Array = A;
             IO.NumberOfIterations = IO.dimsItr.NumberOfIterations;
             IO.SliceDimensions = slice;
         end
-        
+
         function elem = getValue(obj,k)
             %GETVALUE  Get the Kth value of an iterator object.
             % ELEM = getValue(OBJ,K) returns the kth slice of the array used to create
@@ -69,9 +69,7 @@ classdef ArraySliceIterator < each.iterators.Iterable
             idx = getValue(obj.dimsItr,k);
             elem = obj.Array(idx{:});
         end
-        
+
     end
-    
+
 end
-
-

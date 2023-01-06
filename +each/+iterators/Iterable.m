@@ -20,7 +20,7 @@ classdef Iterable < handle & matlab.mixin.indexing.RedefinesParen
     % See Also each.iterators.ArrayIterator, each
     %
 
-    %   Copyright 2014-2023 The MathWorks, Inc.
+    % Copyright 2014-2023 The MathWorks, Inc.
 
     properties (GetAccess = public, SetAccess = protected)
         % NumberOfIterations must be set to a scalar value in the child class constructor

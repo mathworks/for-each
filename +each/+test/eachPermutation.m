@@ -1,9 +1,8 @@
 classdef eachPermutation < matlab.unittest.TestCase
-    %   Copyright 2014-2023 The MathWorks, Inc.
+
     methods (Test)
 
         function inputArgs(testcase)
-
             io = eachPermutation([1 2 3],'unique');
             testcase.verifyClass(io,'each.iterators.UniquePermutationIterator');
 
@@ -202,3 +201,5 @@ classdef eachPermutation < matlab.unittest.TestCase
         end
     end
 end
+
+% Copyright 2014-2023 The MathWorks, Inc.
