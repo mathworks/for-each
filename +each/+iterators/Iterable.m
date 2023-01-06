@@ -24,7 +24,10 @@ classdef Iterable < handle & matlab.mixin.indexing.RedefinesParen
 
     properties (GetAccess = public, SetAccess = protected)
         % NumberOfIterations must be set to a scalar value in the child class constructor
-        NumberOfIterations;
+        NumberOfIterations(1,1) double {...
+                mustBeInteger,...
+                mustBeNonnegative,...
+                mustBeLessThan(NumberOfIterations,9007199254740992)};
     end
 
     methods (Abstract)
@@ -37,7 +40,7 @@ classdef Iterable < handle & matlab.mixin.indexing.RedefinesParen
 
     methods (Hidden, Sealed)
         % In order to overload FOR, the each.iterators.Iterable class overloads the
-        % SIZE and SUBSREF methods, and provides a simplified interface of the
+        % SIZE and Indexing methods, and provides a simplified interface of the
         % GETVALUE method and NumberOfIterations property.
         function [varargout] = size(obj)
             % Size
@@ -61,11 +64,11 @@ classdef Iterable < handle & matlab.mixin.indexing.RedefinesParen
                     return
                 end
             end
-            error("This Operation is not supported.");
+            throwUnsupported();
         end
 
         function obj = parenAssign(~,~,varargin) %#ok<STOUT>
-            error("This Operation is not supported.");
+            throwUnsupported();
         end
 
         function n = parenListLength(~,~,~)
@@ -73,27 +76,20 @@ classdef Iterable < handle & matlab.mixin.indexing.RedefinesParen
         end
 
         function obj = parenDelete(~,~) %#ok<STOUT>
-            error("This Operation is not supported.");
+            throwUnsupported();
         end
     end
 
     methods
-        function out = cat(~,varargin) %#ok<STOUT> 
-            error("This Operation is not supported.");
-        end
-
-        function set.NumberOfIterations(obj,rhs)
-            if ~isnumeric(rhs) || ~isscalar(rhs)
-                throwAsCaller(MException('Iterators:Iterable:NumberOfIterations',...
-                    'NumberOfIterations must be set to a numeric scalar value'));
-            end
-
-            if rhs > each.iterators.MaxIterations
-                throwAsCaller(MException('each:iterators:TooManyIterations'...
-                    ,'Cannot perform more than %d loop iterations.',each.iterators.MaxIterations));
-            end
-            obj.NumberOfIterations = floor(rhs);
+        function out = cat(~,varargin) %#ok<STOUT>
+            throwUnsupported();
         end
     end
 end
 
+function throwUnsupported()
+    throwAsCaller(...
+        MException(...
+            "Iterable:UnsupportedOperation",...
+            "This operation is not supported."));
+end
