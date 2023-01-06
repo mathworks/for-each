@@ -10,7 +10,7 @@ To install:
 * `addpath {installdir}/foreach`
 
 Or install from File Exchange:
-[![For-Each on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/48729-for-each)
+[![View MATLAB For-Each on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/122917-matlab-for-each)
 ---------------------------------------
 To learn about for-each, type:
 
